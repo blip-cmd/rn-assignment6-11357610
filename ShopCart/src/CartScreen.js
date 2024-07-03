@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop: 20,
+    paddingTop: 30,
   },
   item: {
     flexDirection: 'row',
@@ -125,8 +125,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 8,
+    padding: 15,
     margin: 10,
+    paddingBottom:0,
+    
   },
   searchIcon: {
     marginLeft: 70,

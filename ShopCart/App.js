@@ -11,8 +11,7 @@ const Drawer = createDrawerNavigator();
 
 const MyDrawer = () => {
   return (
-    // <Drawer.Navigator screenOptions={{ headerShown: false }}>
-    <Drawer.Navigator>
+    <Drawer.Navigator screenOptions={{ headerShown: false }}>
       <Drawer.Screen name="Available Products" component={HomeScreen} />
       <Drawer.Screen name="Shopping Cart" component={CartScreen} />
     </Drawer.Navigator>
