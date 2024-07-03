@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { imagePaths } from './imagePaths';
+import { useNavigation } from '@react-navigation/native';
 
 const CartScreen = () => {
+
+  const navigation = useNavigation()
+
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -42,7 +46,10 @@ const CartScreen = () => {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <View style={styles.iconSearch}>
+        <View style={styles.header}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.toggleDrawer()}>
+              <Image source={require('../assets/Menu.png')} />
+            </TouchableOpacity>
           <Image source={require('../assets/Logo.png')} style={styles.addIcon} />
           <Image source={require('../assets/Search.png')} style={styles.searchIcon} />
         </View>
@@ -114,11 +121,12 @@ const styles = StyleSheet.create({
     marginLeft: 16,
     marginTop: 100,
   },
-  iconSearch: {
+  header: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginLeft: 100,
-    marginTop: 40,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 8,
+    margin: 10,
   },
   searchIcon: {
     marginLeft: 70,
