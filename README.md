@@ -22,9 +22,14 @@ The app is built using React Native and Expo, with the following main components
 - The total price is calculated by summing up the prices of all cart items.
 
 ### Screenshots of the app on Android
-<!-- Add your screenshots here -->
+![Screenshot 1](./ShopCart/assets/screenshot-1.jpg)
+![Screenshot 2](./ShopCart/assets/screenshot-2.jpg)
+![Screenshot 3](./ShopCart/assets/screenshot-3.jpg)
+![Screenshot 4](./ShopCart/assets/screenshot-4.jpg)
+![Screenshot 5](./ShopCart/assets/screenshot-5.jpg)
 
-### Development Steps To Follow
+
+### Steps Taken In Development
 - Cloned created repo
 - Created blank Expo app
 - Installed required modules
@@ -56,5 +61,5 @@ The app is built using React Native and Expo, with the following main components
 4. Use the Expo app on your Android device to run the app, or use an Android emulator.
 
 ### Corrections
-If you have any postive critism, kindly get in touch. 
+If you have any positive criticism, kindly get in touch. 
 Thank you.
