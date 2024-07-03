@@ -22,10 +22,13 @@ Data Storage in Expo - Practice
   - Take out the Drawer's Header
   - Working shopping bag icon - linked to CartScreen
   - Closer Styling
+- CartScreen 
+  - Structure
+  - Working Navigation
+  - Closer Styling
 - AsyncStorage Service
-  -  dependencies
-  - 
-- CartScreen Layout
+  -  
+
 - Add to Cart buttion with logic -- AysncStorage
 - Close Styling
 - Testing

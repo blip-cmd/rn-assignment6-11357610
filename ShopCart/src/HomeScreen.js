@@ -1,8 +1,26 @@
-// src/HomeScreen.js
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, SafeAreaView, ScrollView } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { imagePaths } from './imagePaths';
 
 const HomeScreen = ({ navigation }) => {
+  const addToCart = async (item) => {
+    try {
+      const cartItem = {
+        id: item.id,
+        name: item.title,
+        description: item.description,
+        price: item.price,
+        imageKey: Object.keys(imagePaths).find(key => imagePaths[key] === item.image),
+      };
+      const jsonValue = JSON.stringify(cartItem);
+      await AsyncStorage.setItem(`@cart_${item.id}`, jsonValue);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  
+
   return (
     <SafeAreaView>
       <ScrollView style={styles.scrollViewContainer}>
@@ -34,19 +52,19 @@ const HomeScreen = ({ navigation }) => {
           </View>
           <View style={styles.grid}>
             {[
-              { image: require('../assets/dress1.png'), title: 'Office Wear', description: 'reversible angora cardigan', price: '$120' },
-              { image: require('../assets/dress2.png'), title: 'Black', description: 'reversible angora cardigan', price: '$120' },
-              { image: require('../assets/dress3.png'), title: 'Church Wear', description: 'reversible angora cardigan', price: '$120' },
-              { image: require('../assets/dress4.png'), title: 'Lomere', description: 'reversible angora cardigan', price: '$120' },
-              { image: require('../assets/dress5.png'), title: '2IWN', description: 'reversible angora cardigan', price: '$120' },
-              { image: require('../assets/dress6.png'), title: 'Lopo', description: 'reversible angora cardigan', price: '$120' },
-              { image: require('../assets/dress7.png'), title: '2IWN', description: 'reversible angora cardigan', price: '$120' },
-              { image: require('../assets/dress3.png'), title: 'lame', description: 'reversible angora cardigan', price: '$120' },
+              { image: imagePaths.dress1, title: 'Office Wear', description: 'reversible angora cardigan', price: '$120', id: 1 },
+              { image: imagePaths.dress2, title: 'Black', description: 'reversible angora cardigan', price: '$120', id: 2 },
+              { image: imagePaths.dress3, title: 'Church Wear', description: 'reversible angora cardigan', price: '$120', id: 3 },
+              { image: imagePaths.dress4, title: 'Lomere', description: 'reversible angora cardigan', price: '$120', id: 4 },
+              { image: imagePaths.dress5, title: '2IWN', description: 'reversible angora cardigan', price: '$120', id: 5 },
+              { image: imagePaths.dress6, title: 'Lopo', description: 'reversible angora cardigan', price: '$120', id: 6 },
+              { image: imagePaths.dress7, title: '2IWN', description: 'reversible angora cardigan', price: '$120', id: 7 },
+              { image: imagePaths.dress3, title: 'lame', description: 'reversible angora cardigan', price: '$120', id: 8 },
             ].map((item, index) => (
               <View key={index} style={styles.card}>
                 <View style={styles.imageContainer}>
                   <Image source={item.image} style={styles.image} />
-                  <TouchableOpacity style={styles.addbutton}>
+                  <TouchableOpacity style={styles.addbutton} onPress={() => addToCart(item)}>
                     <Image source={require('../assets/add_circle.png')} />
                   </TouchableOpacity>
                 </View>
