@@ -1,25 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, SafeAreaView, ScrollView } from "react-native";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import CartContext from './CartContext';
 import { imagePaths } from './imagePaths';
 
 const HomeScreen = ({ navigation }) => {
-  const addToCart = async (item) => {
-    try {
-      const cartItem = {
-        id: item.id,
-        name: item.title,
-        description: item.description,
-        price: item.price,
-        imageKey: Object.keys(imagePaths).find(key => imagePaths[key] === item.image),
-      };
-      const jsonValue = JSON.stringify(cartItem);
-      await AsyncStorage.setItem(`@cart_${item.id}`, jsonValue);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-  
+  const { addToCart } = useContext(CartContext);
 
   return (
     <SafeAreaView>
@@ -42,24 +27,37 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.section}>
             <Text style={styles.subtitle}>OUR STORY</Text>
             <View style={styles.icons}>
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity style={[styles.button, 
+                {
+                  backgroundColor: '#F9F3F3',
+                  width: 34,
+                  height: 34,
+                  borderRadius: 25,
+                  marginRight: 8,
+                }]}>
                 <Image source={require('../assets/Listview.png')} />
               </TouchableOpacity>
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity style={[styles.button, 
+                {
+                  backgroundColor: '#F9F3F3',
+                  width: 34,
+                  height: 34,
+                  borderRadius: 100,
+                }]}>
                 <Image source={require('../assets/Filter.png')} />
               </TouchableOpacity>
             </View>
           </View>
           <View style={styles.grid}>
             {[
-              { image: imagePaths.dress1, title: 'Office Wear', description: 'reversible angora cardigan', price: '$120', id: 1 },
-              { image: imagePaths.dress2, title: 'Black', description: 'reversible angora cardigan', price: '$120', id: 2 },
-              { image: imagePaths.dress3, title: 'Church Wear', description: 'reversible angora cardigan', price: '$120', id: 3 },
-              { image: imagePaths.dress4, title: 'Lomere', description: 'reversible angora cardigan', price: '$120', id: 4 },
-              { image: imagePaths.dress5, title: '2IWN', description: 'reversible angora cardigan', price: '$120', id: 5 },
-              { image: imagePaths.dress6, title: 'Lopo', description: 'reversible angora cardigan', price: '$120', id: 6 },
-              { image: imagePaths.dress7, title: '2IWN', description: 'reversible angora cardigan', price: '$120', id: 7 },
-              { image: imagePaths.dress3, title: 'lame', description: 'reversible angora cardigan', price: '$120', id: 8 },
+              { image: imagePaths.dress1, title: 'Office Wear', description: 'reversible angora cardigan', price: '$120', id: 1, imageKey: 'dress1' },
+              { image: imagePaths.dress2, title: 'Black', description: 'reversible angora cardigan', price: '$120', id: 2, imageKey: 'dress2' },
+              { image: imagePaths.dress3, title: 'Church Wear', description: 'reversible angora cardigan', price: '$120', id: 3, imageKey: 'dress3' },
+              { image: imagePaths.dress4, title: 'Lomere', description: 'reversible angora cardigan', price: '$120', id: 4, imageKey: 'dress4' },
+              { image: imagePaths.dress5, title: '2IWN', description: 'reversible angora cardigan', price: '$120', id: 5, imageKey: 'dress5' },
+              { image: imagePaths.dress6, title: 'Lopo', description: 'reversible angora cardigan', price: '$120', id: 6, imageKey: 'dress6' },
+              { image: imagePaths.dress7, title: '2IWN', description: 'reversible angora cardigan', price: '$120', id: 7, imageKey: 'dress7' },
+              { image: imagePaths.dress3, title: 'lame', description: 'reversible angora cardigan', price: '$120', id: 8, imageKey: 'dress3' },
             ].map((item, index) => (
               <View key={index} style={styles.card}>
                 <View style={styles.imageContainer}>
@@ -79,6 +77,7 @@ const HomeScreen = ({ navigation }) => {
     </SafeAreaView>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {

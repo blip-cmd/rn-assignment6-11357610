@@ -8,4 +8,3 @@ export const imagePaths = {
     'dress6': require('../assets/dress6.png'),
     'dress7': require('../assets/dress7.png'),
   };
-  

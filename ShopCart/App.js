@@ -4,8 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeScreen from './src/HomeScreen';
 import CartScreen from './src/CartScreen';
+import { CartProvider } from './src/CartContext';
 import 'react-native-gesture-handler';
-
 
 const Drawer = createDrawerNavigator();
 
@@ -20,9 +20,11 @@ const MyDrawer = () => {
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <MyDrawer />
-    </NavigationContainer>
+    <CartProvider>
+      <NavigationContainer>
+        <MyDrawer />
+      </NavigationContainer>
+    </CartProvider>
   );
 };
 
